@@ -1,42 +1,39 @@
 import { useState } from "react";
 
-function PollForm({ addPoll }) {
-  const [pollName, setPollName] = useState("");
+function PollForm({ addOption }) {
+  const [optionText, setOptionText] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (pollName.trim() === "") return;
+    if (optionText.trim() === "") return;
 
-    addPoll(pollName);
-
-    setPollName("");
+    addOption(optionText);
+    setOptionText("");
   };
 
   return (
-    <div className="bg-white p-4 rounded shadow-md w-full max-w-md mx-auto">
-      <h2 className="text-xl font-bold text-center text-blue-600 mb-4">
-        Add New Poll
-      </h2>
+    <div>
+      <h2 className="mb-3 text-lg font-semibold text-blue-700">Add New Option</h2>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <input
           type="text"
           placeholder="Enter poll option"
-          value={pollName}
-          onChange={(e) => setPollName(e.target.value)}
-          className="border p-2 rounded"
+          value={optionText}
+          onChange={(e) => setOptionText(e.target.value)}
+          className="rounded-lg border border-slate-300 p-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
         />
 
         <button
           type="submit"
-          className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700"
+          className="rounded-lg bg-blue-600 p-2 font-medium text-white transition hover:bg-blue-700"
         >
-          Add Poll
+          Add Option
         </button>
       </form>
     </div>
   );
-} 
+}
 
 export default PollForm;

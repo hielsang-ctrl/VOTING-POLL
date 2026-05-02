@@ -1,122 +1,93 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useEffect, useState } from "react";
+import PollForm from "./Component/PollForm";
+import PollList from "./Component/PollList";
+
+const defaultOptions = [
+  { id: 1, text: "Immanuel Okoth", votes: 0 },
+  { id: 2, text: "Shadrack Mason", votes: 0 },
+  { id: 3, text: "Joshua Mbilli", votes: 0 },
+];
+
+const readSavedOptions = () => {
+  try {
+    const savedOptions = JSON.parse(localStorage.getItem("pollOptions"));
+    return Array.isArray(savedOptions) && savedOptions.length > 0
+      ? savedOptions
+      : defaultOptions;
+  } catch {
+    return defaultOptions;
+  }
+};
+
+const readHasVoted = () => {
+  try {
+    return JSON.parse(localStorage.getItem("hasVoted")) === true;
+  } catch {
+    return false;
+  }
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [options, setOptions] = useState(readSavedOptions);
+  const [hasVoted, setHasVoted] = useState(readHasVoted);
+
+  useEffect(() => {
+    localStorage.setItem("pollOptions", JSON.stringify(options));
+    localStorage.setItem("hasVoted", JSON.stringify(hasVoted));
+  }, [options, hasVoted]);
+
+  const addOption = (text) => {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+
+    const newOption = {
+      id: Date.now(),
+      text: trimmed,
+      votes: 0,
+    };
+
+    setOptions((prev) => [...prev, newOption]);
+  };
+
+  const handleVote = (id) => {
+    if (hasVoted) return;
+
+    setOptions((prev) =>
+      prev.map((opt) =>
+        opt.id === id ? { ...opt, votes: opt.votes + 1 } : opt,
+      ),
+    );
+    setHasVoted(true);
+  };
+
+  const resetVotes = () => {
+    setOptions((prev) => prev.map((opt) => ({ ...opt, votes: 0 })));
+    setHasVoted(false);
+  };
+
+  const totalVotes = options.reduce((sum, opt) => sum + opt.votes, 0);
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
+    <main className="mx-auto max-w-md space-y-6 p-4">
+        <h1 main className=" text-center text-3xl text-white font-bold ">Voting Poll App</h1>
+
+        <PollForm addOption={addOption} />
+
+        <PollList
+          options={options}
+          onVote={handleVote}
+          hasVoted={hasVoted}
+          totalVotes={totalVotes}
+        />
+
         <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          onClick={resetVotes}
+          className="mt-6 w-full rounded-lg bg-blue-500 py-2 font-medium text-white transition hover:bg-blue-600"
         >
-          Count is {count}
+          Reset Votes
         </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+    </main>
+  );
 }
 
-export default App
+export default App;
