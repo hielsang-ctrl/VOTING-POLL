@@ -4,14 +4,14 @@ function PollOption({ option, onVote, hasVoted, totalVotes }) {
 
   return (
     <article >
-      <div className="mb-2 flex items-center justify-between gap-3">
-        <h3 className="text-left font-semibold">{option.text}</h3>
-        <p className="shrink-0 text-sm text-slate-500">
+      <div className="mb-2  items-center gap-3">
+        <h3 className="text-left text-white font-semibold">{option.text}</h3>
+        <p className="text-sm text-slate-500">
           {option.votes} {option.votes === 1 ? "vote" : "votes"}
         </p>
       </div>
 
-      <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200">
+      <div className="h-2 w-full rounded-full bg-white">
         <div className="h-full rounded-full bg-green-500 transition-all"
           style={{ width: `${percentage}%` }}
         >
@@ -23,7 +23,7 @@ function PollOption({ option, onVote, hasVoted, totalVotes }) {
         <button
           onClick={() => onVote(option.id)}
           disabled={hasVoted}
-          className="rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-400"
+          className="rounded-lg bg-blue-500 px-3 py-1 text-sm font-medium text-white transition hover:bg-blue-600 disabled:cursor-not-allowed disabled:bg-slate-500"
         >
           Vote
         </button>

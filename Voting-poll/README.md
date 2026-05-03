@@ -33,7 +33,7 @@ One vote per user (buttons disabled after voting)
 Reset all votes with a single click
 Persistent data using `localStorage`
 Fully responsive design (mobile & desktop)
-Clean UI with 3+ complementary colors
+Clean UI with 3 complementary colors
 
 
 # State Management

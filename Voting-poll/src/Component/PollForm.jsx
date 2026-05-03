@@ -22,12 +22,12 @@ function PollForm({ addOption }) {
           placeholder="Enter poll option"
           value={optionText}
           onChange={(e) => setOptionText(e.target.value)}
-          className="rounded-lg border border-slate-300 p-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+          className="rounded-lg border border-white p-2  "
         />
 
         <button
           type="submit"
-          className="rounded-lg bg-blue-600 p-2 font-medium text-white transition hover:bg-blue-700"
+          className="rounded-lg bg-blue-500 p-2 font-medium text-white transition hover:bg-blue-600"
         >
           Add Option
         </button>
