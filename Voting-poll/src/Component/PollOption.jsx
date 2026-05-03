@@ -29,6 +29,7 @@ function PollOption({ option, onVote, hasVoted, totalVotes }) {
         </button>
       </div>
     </article>
+    
   );
 }
 
