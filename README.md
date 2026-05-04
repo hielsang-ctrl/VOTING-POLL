@@ -9,31 +9,31 @@ This project is designed as a collaborative mini-project for practicing React de
 
 # Objectives
 
-Structure a React app using multiple reusable components
-Pass data and functions via props
-Manage shared state in `App.jsx` using `useState`
-Handle user interactions with React events (`onClick`, `onSubmit`, `onChange`)
-Persist data using `localStorage`
-Understand React data flow (props down, events up)
-Build a responsive UI using Tailwind CSS or Bootstrap
+- Structure a React app using multiple reusable components
+- Pass data and functions via props
+- Manage shared state in `App.jsx` using `useState`
+- Handle user interactions with React events (`onClick`, `onSubmit`, `onChange`)
+- Persist data using `localStorage`
+- Understand React data flow (props down, events up)
+- Build a responsive UI using Tailwind CSS or Bootstrap
 
 
 # Tech Stack
 
-*React 
-*JavaScript XML
-*Tailwind CSS 
+###React 
+###JavaScript XML
+###Tailwind CSS 
 
 # Features
 
-Vote on poll options
-Live vote count updates
-Percentage-based progress bars
-One vote per user (buttons disabled after voting)
-Reset all votes with a single click
-Persistent data using `localStorage`
-Fully responsive design (mobile & desktop)
-Clean UI with 3+ complementary colors
+- Vote on poll options
+- Live vote count updates
+- Percentage-based progress bars
+- One vote per user (buttons disabled after voting)
+- Reset all votes with a single click
+- Persistent data using `localStorage`
+- Fully responsive design (mobile & desktop)
+- Clean UI with 3+ complementary colors
 
 
 # State Management
@@ -41,37 +41,37 @@ Clean UI with 3+ complementary colors
 All application state is stored in **`App.jsx`**
   Includes:
 
-   Poll options
-   Vote counts
-   Voting status
+   - Poll options
+   - Vote counts
+   - Voting status
 
 
 
 # Components
 
-# `App.jsx`
+## `App.jsx`
 
 Root component
 Holds all state
 Handles logic for voting, adding options, and resetting
 
-# `PollForm.jsx`
+## `PollForm.jsx`
 
 Input field for adding new poll options
 Handles form submission
 
-# `PollList.jsx`
+## `PollList.jsx`
 
 * Renders list of poll options
 
-# `PollOption.jsx`
+## `PollOption.jsx`
 
   Displays:
 
-Option name
-Vote count
-Percentage bar
-Vote button
+- Option name
+- Vote count
+- Percentage bar
+- Vote button
 
 
 # Usage
@@ -87,3 +87,10 @@ Vote button
 # Contributing
 
 This is a group project with **6 contributors**.
+
+- Hiel Sang
+- Shadrack Maison
+- Fidelis Njoki
+- Immanuel Okoth
+- Joshua Mbilli
+- Ric Musyoki
