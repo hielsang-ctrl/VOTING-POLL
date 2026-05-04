@@ -69,7 +69,7 @@ function App() {
 
   return (
     <main className="mx-auto max-w-md space-y-6 p-4">
-        <h1 main className=" text-center text-3xl text-white font-bold ">Voting Poll App</h1>
+        <h1 className=" text-center text-3xl text-white font-bold ">Voting Poll App</h1>
 
         <PollForm addOption={addOption} />
 

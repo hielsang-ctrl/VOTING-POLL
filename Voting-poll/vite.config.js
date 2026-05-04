@@ -4,6 +4,7 @@ import babel from '@rolldown/plugin-babel'
 import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
+  base: process.env.NODE_ENV === 'production' ? '/VOTING-POLL/' : '/',
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),
