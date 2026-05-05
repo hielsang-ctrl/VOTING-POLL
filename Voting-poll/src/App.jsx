@@ -32,7 +32,7 @@ function App() {
   const [hasVoted, setHasVoted] = useState(readHasVoted);
   const [error, setError] = useState("");
 
-  // normalize helper
+
   const normalize = (text) =>
     text.trim().toLowerCase().replace(/\s+/g, " ");
 
@@ -41,7 +41,7 @@ function App() {
     localStorage.setItem("hasVoted", JSON.stringify(hasVoted));
   }, [options, hasVoted]);
 
-  // ✅ Add option with duplicate prevention
+  
   const addOption = (text) => {
     const normalizedInput = normalize(text);
 
@@ -69,7 +69,7 @@ function App() {
     setError("");
   };
 
-  // ✅ Voting
+
   const handleVote = (id) => {
     if (hasVoted) return;
 
@@ -82,7 +82,7 @@ function App() {
     setHasVoted(true);
   };
 
-  // 🔄 Reset votes only
+  
   const resetVotes = () => {
     setOptions((prev) =>
       prev.map((opt) => ({ ...opt, votes: 0 }))
@@ -90,7 +90,7 @@ function App() {
     setHasVoted(false);
   };
 
-  // ♻️ Reset to default poll
+
   const resetOptions = () => {
     if (!window.confirm("Reset poll to default options?")) return;
 
@@ -99,7 +99,6 @@ function App() {
     localStorage.removeItem("pollOptions");
   };
 
-  // 🆕 Clear everything
   const clearOptions = () => {
     if (!window.confirm("Clear all options and start fresh?")) return;
 
@@ -112,13 +111,7 @@ function App() {
 
   return (
     <main className="mx-auto max-w-md space-y-6 p-4">
-<<<<<<< HEAD
-      <h1 className="text-center text-3xl text-white font-bold">
-        Voting Poll App
-      </h1>
-=======
         <h1 className=" text-center text-3xl text-white font-bold ">Voting Poll App</h1>
->>>>>>> ccb1592cbd3e0b910c4fb06b3b0699741d863547
 
       <PollForm addOption={addOption} error={error} />
 

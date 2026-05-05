@@ -17,7 +17,7 @@ function PollForm({ addOption, error }) {
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Add an option..."
-        className="w-full rounded-lg border p-2"
+        className="w-full rounded-lg border border-slate-700 bg-slate-900 p-2 text-white placeholder:text-slate-500 focus:border-blue-400 focus:outline-none"
       />
 
       {error && (
