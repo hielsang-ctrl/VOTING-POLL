@@ -48,6 +48,7 @@ function PollOption({
         )}
       </div>
     </article>
+    
   );
 }
 
