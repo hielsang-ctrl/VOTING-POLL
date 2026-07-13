@@ -1,12 +1,14 @@
 import { useState } from "react";
 
-function PollForm({ addOption, error }) {
+function PollForm({ addOption, error, clearError }) {
   const [input, setInput] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addOption(input);
-    if (!error) {
+    const normalizedValue = input.trim();
+
+    addOption(normalizedValue);
+    if (normalizedValue && !error) {
       setInput("");
     }
   };
@@ -15,7 +17,10 @@ function PollForm({ addOption, error }) {
     <form onSubmit={handleSubmit} className="space-y-2">
       <input
         value={input}
-        onChange={(e) => setInput(e.target.value)}
+        onChange={(e) => {
+          clearError();
+          setInput(e.target.value);
+        }}
         placeholder="Add an option..."
         className="w-full rounded-lg border p-2"
       />
@@ -26,7 +31,8 @@ function PollForm({ addOption, error }) {
 
       <button
         type="submit"
-        className="w-full rounded-lg bg-blue-500 py-2 text-white font-medium hover:bg-blue-600 transition"
+        disabled={!input.trim()}
+        className="w-full rounded-lg bg-blue-500 py-2 text-white font-medium hover:bg-blue-600 transition disabled:bg-slate-600 disabled:cursor-not-allowed"
       >
         Add Option
       </button>
